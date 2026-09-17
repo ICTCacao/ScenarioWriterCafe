@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="robots" content="noindex, nofollow">
+		<title>ScenarioWriterCafe Login</title>
+
+	    <!-- Favicons
+	    ================================================== -->
+	    <link rel="shortcut icon" href="./img/icon/favicon.ico" type="image/x-icon">
+	    <link rel="apple-touch-icon" href="./img/icon/apple-touch-icon.png">
+	    <link rel="apple-touch-icon" sizes="72x72" href="./img/icon/apple-touch-icon-72x72.png">
+	    <link rel="apple-touch-icon" sizes="114x114" href="./img/icon/apple-touch-icon-114x114.png">
+
+	    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="./css/scwDefault.css?v=20260918">
+    <link rel="stylesheet" type="text/css" href="./css/scwUserStyle.css?v=20260918">
+
+	    <!-- Stylesheet
+	    ================================================== -->
+  </head>
+	<body class="page-hero">
+		<!-- 2026-09: DB 未設定なら初期設定へ（この画面は静的 HTML なので index.php のゲートを通らずに来られる） -->
+		<script>
+		(function(){
+			try {
+				fetch('./ajax/ajaxSetup.php', {method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:'action=status', cache:'no-store'})
+					.then(function(r){ return r.json(); })
+					.then(function(j){ if (j && j.ok === false) { location.replace('./swSetup.php'); } })
+					.catch(function(){});
+			} catch (e) {}
+		})();
+		</script>
+    <!-- Navigation（ひとりで使う非公開サイトなのでロゴだけ）
+    ==========================================-->
+    <nav id="tf-menu" class="navbar navbar-default fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="./swUserLogin.html"><img src="./img/logo.png" height="30"></a>
+      </div>
+    </nav>
+
+    <div id="tf-login">
+        <div class="overlay">
+            <div class="content">
+					<form class="" role="form" name="frmUserLogin" method="POST" action="">
+						<div class="row row-0">
+							<div class="col-sm-7 offset-sm-2 text-center">
+								<img src="./img/logo.png">
+							</div>
+						</div>
+						<div class="row row-0">
+							<label for="fdtUserMailad" class="col-form-label col-sm-2 offset-sm-1">メールアドレス</label>
+							<div class="col-sm-5">
+								<input type="email" autofocus
+								class="form-control form-control-sm"
+								id="fdtUserMailad" name="fdtUserMailad"
+								value=""
+								required="required"
+								placeholder="メールアドレス">
+							</div>
+						</div>
+
+						<div class="row row-0">
+							<label for="fdtUserPasswd" class="col-form-label col-sm-2 offset-sm-1">パスワード</label>
+							<div class="col-sm-5">
+								<input type="password"
+								class="form-control form-control-sm"
+								id="fdtUserPasswd" name="fdtUserPasswd"
+								value=""
+								required="required"
+								placeholder="パスワード"
+								onkeydown="ajaxUserLogin_ReturnLogin(frmUserLogin,event);">
+							</div>
+						</div>
+						<div class="row row-0">
+							<div class="col-sm-3 offset-sm-3">
+								<button type="button" class="btn btn-success btn-lg w-100"
+									onClick="ajaxUserLogin_Login(frmUserLogin);">ログイン
+								</button>
+							</div>
+						</div>
+						<div>
+							<!--処理結果表示位置--><span id="retMsg" class="text-center"></span>
+						</div>
+						<div class="row row-0">
+							<div class="col-sm-7 offset-sm-3">
+								<h5>
+								<p>※パスワードを忘れたときは、↓↓リセット↓↓できます。</p>
+								<p style="cursor: pointer;"
+									onClick="ajaxUserLogin_ResetPasswd(frmUserLogin);"
+									onmouseover="this.style.fontWeight='bold'"
+									onmouseout="this.style.fontWeight='normal'">
+									※パスワードをリセットする。
+								</p>
+								</h5>
+							</div>
+						</div>
+					</form>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="./js/scw.js?v=20260918"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+
+		<!-- Custom js -->
+		<script type="text/javascript" src="./ajax/ajaxFunc.js?v=20260917"></script>
+		<script type="text/javascript" src="./ajax/ajaxUserLogin.js?v=20260917"></script>
+	</body>
+</html>

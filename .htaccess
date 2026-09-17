@@ -1,0 +1,14 @@
+#suPHP_ConfigPath /home/dbu/scenariowritercafe.com/xserver_php/
+#AddHandler fcgid-script .php .phps
+#FCGIWrapper "/home/dbu/scenariowritercafe.com/xserver_php/php-cgi" .php
+#FCGIWrapper "/home/dbu/scenariowritercafe.com/xserver_php/php-cgi" .phps
+# 2026-09 マルチDB対応: SQLite の DB ファイルを Web から読めないようにする（既定の置き場 sw_config/ は別途全拒否）
+<FilesMatch "\.(sqlite|sqlite3|db)(-wal|-shm|-journal)?$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>

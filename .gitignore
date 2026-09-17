@@ -1,0 +1,21 @@
+# 設置ごとの設定・データ（リポジトリに入れない）
+sw_config/swDbSetting.php
+sw_config/swLocalConfig.php
+sw_config/*.sqlite
+sw_config/*.sqlite-*
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite-journal
+# 一時ファイル・アップロード画像・旧データ
+tmp/*
+!tmp/index.html
+!tmp/.gitkeep
+img/thumb/*
+!img/thumb/.gitkeep
+ScenarioFolder/*
+!ScenarioFolder/.gitkeep
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
